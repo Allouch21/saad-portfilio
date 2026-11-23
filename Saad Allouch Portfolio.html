@@ -1,0 +1,723 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset=utf8>
+    <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <style>
+        :root {
+            color-scheme: light;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font: 14px -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fff;
+            color: #000
+        }
+
+        img {
+            max-width: 100%
+        }
+
+        [hidden]:not([hidden=until-found i]) {
+            display: none !important
+        }
+    </style>
+</head>
+
+<body>
+    <title>Saad Allouch Portfolio</title>
+    <meta name="claude:viewport-fit-sides" content="cover">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+    <style>
+        /* Layout: single column, left-aligned, sections separated by a thin "cable" rule; hero carries a small network topology. */
+        :root {
+            --bg: #f2f5f3;
+            --surface: #ffffff;
+            --fg: #13201c;
+            --muted: #53635e;
+            --line: #cfd9d5;
+            --accent: #0a7565;
+            --accent-ink: #ffffff;
+            --code-bg: #0f1c19;
+            --code-fg: #cfe8e1;
+            --code-dim: #7fa59b;
+            --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+            --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0e1614;
+                --surface: #15211e;
+                --fg: #e4efeb;
+                --muted: #9db1ab;
+                --line: #2a3b36;
+                --accent: #3fd0b6;
+                --accent-ink: #06211c;
+                --code-bg: #0a1210;
+                --code-fg: #cfe8e1;
+                --code-dim: #6f9a8f;
+                color-scheme: dark
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0e1614;
+            --surface: #15211e;
+            --fg: #e4efeb;
+            --muted: #9db1ab;
+            --line: #2a3b36;
+            --accent: #3fd0b6;
+            --accent-ink: #06211c;
+            --code-bg: #0a1210;
+            --code-fg: #cfe8e1;
+            --code-dim: #6f9a8f;
+            color-scheme: dark
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            padding-left: max(16px, env(safe-area-inset-left, 0px));
+            padding-right: max(16px, env(safe-area-inset-right, 0px));
+            padding-block: 0
+        }
+
+        .wrap {
+            max-width: 920px;
+            margin: 0 auto
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-wrap: balance;
+            line-height: 1.15;
+            margin: 0
+        }
+
+        a {
+            color: var(--accent)
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 3px
+        }
+
+        .label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted)
+        }
+
+        header.top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 0;
+            flex-wrap: wrap
+        }
+
+        .brand {
+            font-family: var(--font-mono);
+            font-weight: 500;
+            font-size: 14px
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px
+        }
+
+        nav a:hover {
+            color: var(--accent)
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 40px;
+            align-items: center;
+            padding: 40px 0 56px
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -.02em
+        }
+
+        .hero .role {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            margin: 14px 0 18px;
+            font-size: 15px
+        }
+
+        .hero p {
+            max-width: 52ch;
+            color: var(--muted);
+            margin: 0 0 24px
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            padding: 6px 12px;
+            border-radius: 999px
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: inline-block
+        }
+
+        .cta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 22px
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--accent-ink);
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid var(--accent)
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--fg);
+            border-color: var(--line)
+        }
+
+        .topo {
+            width: 100%;
+            height: auto;
+            max-width: 100%
+        }
+
+        .topo .ln {
+            stroke: var(--line);
+            stroke-width: 2;
+            fill: none
+        }
+
+        .topo .ln.on {
+            stroke: var(--accent)
+        }
+
+        .topo .node {
+            fill: var(--surface);
+            stroke: var(--accent);
+            stroke-width: 2
+        }
+
+        .topo text {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            fill: var(--muted)
+        }
+
+        .topo .t-strong {
+            fill: var(--fg);
+            font-weight: 500
+        }
+
+        section {
+            padding: 48px 0;
+            border-top: 1px solid var(--line)
+        }
+
+        section>h2 {
+            font-size: 1.6rem;
+            margin: 8px 0 28px;
+            letter-spacing: -.01em
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px 40px
+        }
+
+        .skills h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-family: var(--font-mono);
+            font-weight: 500;
+            color: var(--accent)
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px
+        }
+
+        .chip {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            padding: 4px 10px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            border-radius: 4px
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0
+        }
+
+        .job {
+            display: grid;
+            grid-template-columns: 150px minmax(0, 1fr);
+            gap: 24px;
+            padding: 22px 0;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .job:last-child {
+            border-bottom: 0
+        }
+
+        .job .when {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .job h3 {
+            font-size: 1.15rem;
+            margin-bottom: 2px
+        }
+
+        .job .org {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 10px
+        }
+
+        .job ul {
+            margin: 0;
+            padding-left: 18px
+        }
+
+        .job li {
+            margin-bottom: 4px
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px
+        }
+
+        .proj {
+            border: 1px solid var(--line);
+            background: var(--surface);
+            padding: 22px;
+            border-radius: 8px;
+            min-width: 0
+        }
+
+        .proj h3 {
+            font-size: 1.15rem;
+            margin: 6px 0 10px
+        }
+
+        .proj p {
+            margin: 0 0 12px;
+            color: var(--muted)
+        }
+
+        .proj ul {
+            margin: 0 0 14px;
+            padding-left: 18px
+        }
+
+        pre.cli {
+            background: var(--code-bg);
+            color: var(--code-fg);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.55;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 0
+        }
+
+        pre.cli .c {
+            color: var(--code-dim)
+        }
+
+        .cli-cap {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 10px
+        }
+
+        .edu {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px
+        }
+
+        .edu div {
+            border-left: 3px solid var(--accent);
+            padding-left: 16px
+        }
+
+        .edu h3 {
+            font-size: 1.05rem
+        }
+
+        .edu p {
+            margin: 2px 0 0;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .contact {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 16px;
+            min-width: 0
+        }
+
+        .card .v {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            word-break: break-all;
+            margin: 6px 0 10px;
+            user-select: all
+        }
+
+        .copy {
+            font: inherit;
+            font-size: 13px;
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 3px 10px;
+            cursor: pointer
+        }
+
+        .copy:hover {
+            border-color: var(--accent)
+        }
+
+        footer {
+            padding: 32px 0 48px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 13px;
+            font-family: var(--font-mono)
+        }
+
+        @media (max-width:760px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 24px;
+                padding-top: 16px
+            }
+
+            .skills,
+            .projects,
+            .edu,
+            .contact {
+                grid-template-columns: minmax(0, 1fr)
+            }
+
+            .job {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 6px
+            }
+        }
+
+        @media (prefers-reduced-motion:no-preference) {
+            .topo .ln.on {
+                stroke-dasharray: 6 6;
+                animation: flow 1.6s linear infinite
+            }
+
+            @keyframes flow {
+                to {
+                    stroke-dashoffset: -24
+                }
+            }
+        }
+    </style>
+
+    <div class="wrap">
+        <header class="top">
+            <span class="brand">saad@allouch:~$</span>
+            <nav aria-label="Sections">
+                <a href="#competences">Compétences</a>
+                <a href="#experience">Expérience</a>
+                <a href="#projets">Projets</a>
+                <a href="#formation">Formation</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <div class="hero">
+            <div>
+                <span class="status"><span class="dot"></span>Disponible immédiatement · Tanger</span>
+                <h1 style="margin-top:20px">Saad Allouch</h1>
+                <div class="role">Technicien Réseaux &amp; Infrastructure</div>
+                <p>Technicien Spécialisé en Infrastructure Digitale (ISTA Ksar El Kébir, 2026). Je configure des réseaux
+                    Cisco, je gère des serveurs et des pools d'adresses IP, et je raccorde la fibre optique chez les
+                    abonnés. Je cherche un poste de technicien réseau, support IT ou infrastructure à Tanger.</p>
+                <div class="cta">
+                    <a class="btn" href="#contact">Me contacter</a>
+                    <a class="btn ghost" href="#projets">Voir mes projets</a>
+                </div>
+            </div>
+            <svg class="topo" viewBox="0 0 360 300" role="img" aria-label="Schéma réseau : routeur, switch, trois VLAN">
+                <path class="ln on" d="M180 52 V104" />
+                <path class="ln on" d="M180 136 V160 M180 160 H70 V196 M180 160 V196 M180 160 H290 V196" />
+                <rect class="node" x="140" y="20" width="80" height="32" rx="6" />
+                <text class="t-strong" x="180" y="40" text-anchor="middle">ROUTEUR</text>
+                <rect class="node" x="130" y="104" width="100" height="32" rx="6" />
+                <text class="t-strong" x="180" y="124" text-anchor="middle">SWITCH L2</text>
+                <rect class="node" x="22" y="196" width="96" height="40" rx="6" />
+                <text class="t-strong" x="70" y="214" text-anchor="middle">VLAN 10</text><text x="70" y="228"
+                    text-anchor="middle">Admin</text>
+                <rect class="node" x="132" y="196" width="96" height="40" rx="6" />
+                <text class="t-strong" x="180" y="214" text-anchor="middle">VLAN 20</text><text x="180" y="228"
+                    text-anchor="middle">Utilisateurs</text>
+                <rect class="node" x="242" y="196" width="96" height="40" rx="6" />
+                <text class="t-strong" x="290" y="214" text-anchor="middle">VLAN 30</text><text x="290" y="228"
+                    text-anchor="middle">Serveurs</text>
+                <text x="180" y="276" text-anchor="middle">exemple de segmentation</text>
+            </svg>
+        </div>
+
+        <section id="competences">
+            <div class="label">Compétences</div>
+            <h2>Ce que je sais faire</h2>
+            <div class="skills">
+                <div>
+                    <h3>Réseaux</h3>
+                    <div class="chips"><span class="chip">TCP/IP</span><span class="chip">IPv4 / Subnetting</span><span
+                            class="chip">VLAN</span><span class="chip">Routage inter-VLAN</span><span
+                            class="chip">Switching</span><span class="chip">DHCP</span><span
+                            class="chip">DNS</span><span class="chip">NAT</span></div>
+                </div>
+                <div>
+                    <h3>Équipements</h3>
+                    <div class="chips"><span class="chip">Routeurs Cisco</span><span class="chip">Switches
+                            Cisco</span><span class="chip">Packet Tracer</span></div>
+                </div>
+                <div>
+                    <h3>Fibre optique</h3>
+                    <div class="chips"><span class="chip">GPON</span><span class="chip">OLT / ONT</span><span
+                            class="chip">FTTH</span><span class="chip">Splitters</span><span class="chip">Tests de
+                            signal</span></div>
+                </div>
+                <div>
+                    <h3>Systèmes &amp; support</h3>
+                    <div class="chips"><span class="chip">Windows</span><span class="chip">Linux</span><span
+                            class="chip">Serveurs</span><span class="chip">Pools d'adresses IP</span><span
+                            class="chip">Diagnostic d'incidents</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="label">Expérience</div>
+            <h2>Parcours professionnel</h2>
+            <div class="timeline">
+                <div class="job">
+                    <div class="when">04/2026 – 05/2026</div>
+                    <div>
+                        <h3>Stagiaire, Réseaux Informatiques</h3>
+                        <div class="org">ORMVA du Loukkos, Ksar El Kébir</div>
+                        <ul>
+                            <li>Configuration de switches et routeurs Cisco : VLAN, routage inter-VLAN, DHCP.</li>
+                            <li>Adressage IPv4 et diagnostic des pannes de connectivité.</li>
+                            <li>Simulation de la topologie sous Cisco Packet Tracer.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="job">
+                    <div class="when">6 mois</div>
+                    <div>
+                        <h3>Technicien Infrastructure &amp; Email Reporting</h3>
+                        <div class="org">Équipe technique infrastructure email</div>
+                        <ul>
+                            <li>Gestion et maintenance quotidienne des serveurs et des pools d'adresses IP.</li>
+                            <li>Suivi, analyse et reporting de la délivrabilité des flux emails.</li>
+                            <li>Diagnostic et résolution des incidents serveurs et connectivité.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="job">
+                    <div class="when">2 mois</div>
+                    <div>
+                        <h3>Technicien Installation Fibre Optique (FTTH)</h3>
+                        <div class="org">World Space Technology, Ksar El Kébir</div>
+                        <ul>
+                            <li>Installation et raccordement FTTH chez les abonnés Inwi et Orange.</li>
+                            <li>Tirage de câbles, pose des PTO, configuration des routeurs ONT.</li>
+                            <li>Tests de signal optique et validation via les applications opérateurs.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets">
+            <div class="label">Projets</div>
+            <h2>Travaux techniques</h2>
+            <div class="projects">
+                <div class="proj">
+                    <span class="label">Cisco Packet Tracer</span>
+                    <h3>Réseau d'entreprise segmenté</h3>
+                    <p>Conception et simulation d'une architecture multi-services avec séparation par VLAN.</p>
+                    <ul>
+                        <li>Segmentation en VLAN et routage inter-VLAN</li>
+                        <li>Serveur DHCP et adressage IPv4</li>
+                        <li>Tests de connectivité complets entre les segments</li>
+                    </ul>
+                </div>
+                <div class="proj">
+                    <span class="label">Terrain</span>
+                    <h3>Raccordement FTTH chez l'abonné</h3>
+                    <p>De la pose du câble à la validation du signal optique, pour deux opérateurs.</p>
+                    <ul>
+                        <li>Architecture GPON : OLT, splitters, ONT</li>
+                        <li>Pose des PTO et configuration du routeur</li>
+                        <li>Contrôle du signal et validation de l'installation</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top:28px">
+                <div class="cli-cap"><span class="label">Exemple de configuration Cisco IOS</span><span
+                        class="label">routage inter-VLAN</span></div>
+                <pre class="cli"><span class="c">! Sous-interfaces du routeur, une par VLAN</span>
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+<span class="c">! DHCP pour le VLAN 20</span>
+ip dhcp pool USERS
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.1</pre>
+            </div>
+        </section>
+
+        <section id="formation">
+            <div class="label">Formation</div>
+            <h2>Diplômes</h2>
+            <div class="edu">
+                <div>
+                    <h3>Technicien Spécialisé, Infrastructure Digitale</h3>
+                    <p>ISTA, Ksar El Kébir · 2024 – 2026</p>
+                </div>
+                <div>
+                    <h3>Baccalauréat, Sciences Physiques</h3>
+                    <p>Lycée Omar Ibn Al Khattab, Ksar El Kébir · 2023</p>
+                </div>
+            </div>
+            <p style="margin:24px 0 0;color:var(--muted)">Langues : arabe (courant), français (technique et
+                professionnel), anglais (notions techniques).</p>
+        </section>
+
+        <section id="contact">
+            <div class="label">Contact</div>
+            <h2>Parlons de votre besoin</h2>
+            <div class="contact">
+                <div class="card"><span class="label">Email</span>
+                    <div class="v" id="v-mail">saadallouch7@gmail.com</div><button class="copy"
+                        data-target="v-mail">Copier</button>
+                </div>
+                <div class="card"><span class="label">Téléphone</span>
+                    <div class="v" id="v-tel">06 57 88 64 29</div><button class="copy"
+                        data-target="v-tel">Copier</button>
+                </div>
+                <div class="card"><span class="label">Localisation</span>
+                    <div class="v">Tanger / Ksar El Kébir, Maroc</div><span
+                        style="font-size:14px;color:var(--muted)">Disponible immédiatement</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>© Saad Allouch · Technicien Réseaux &amp; Infrastructure</footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.copy').forEach(function (b) {
+            b.addEventListener('click', function () {
+                var el = document.getElementById(b.dataset.target);
+                var txt = el.textContent.trim();
+                function sel() { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Sélectionné'; }
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(txt).then(function () { b.textContent = 'Copié'; setTimeout(function () { b.textContent = 'Copier' }, 1500) }, sel);
+                } else { sel(); }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
